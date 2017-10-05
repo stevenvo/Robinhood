@@ -299,17 +299,17 @@ class Robinhood:
             (:obj:`dict`) values returned from `historicals` endpoint
 
         """
-        if isinstance(bounds, str): #recast to Enum
-            bounds = Bounds(bounds)
+        # if isinstance(bounds, str): #recast to Enum
+        #     bounds = Bounds(bounds)
 
         params = {
             'symbols': ','.join(stock).upper,
             'interval': interval,
             'span': span,
-            'bounds': bounds.name.lower()
+            'bounds': bounds
         }
         res = self.session.get(
-            self.endpoints['historicals'],
+            self.endpoints['historicals']+stock.upper()+"/",
             params=params
         )
         return res.json()
