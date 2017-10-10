@@ -673,6 +673,13 @@ class Robinhood:
         """
         return self.session.get(self.endpoints['positions']+'?nonzero=true').json()
 
+    def securities_watched(self):
+        """
+        Returns a list of symbols of securities of which there are more
+        than zero shares in user's portfolio.
+        """
+        return self.session.get(self.endpoints['watchlists']+'Default/').json()
+
     ##############################
     #PLACE ORDER
     ##############################
